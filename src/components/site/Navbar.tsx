@@ -20,7 +20,7 @@ export default function Navbar() {
       setScrolled(window.scrollY > 20);
 
       const sections = links.map((l) => document.querySelector(l.href));
-      const offset = window.scrollY + 120;
+      const offset = window.scrollY + 140;
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = sections[i] as HTMLElement | null;
         if (el && el.offsetTop <= offset) {
@@ -35,25 +35,21 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-sm shadow-navy-900/5 border-b border-slate-200'
-          : 'bg-transparent border-b border-transparent'
-      }`}
-    >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
+    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4">
+      <nav
+        className={`mx-auto flex max-w-7xl items-center justify-between rounded-full px-4 py-2.5 transition-all duration-500 sm:px-5 ${
+          scrolled || open
+            ? 'glass shadow-elevated'
+            : 'border border-transparent bg-transparent'
+        }`}
+      >
         {/* Brand */}
-        <a href="#home" className="flex items-center gap-2.5" aria-label="Yohannes Clinic home">
-          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-white shadow-sm">
+        <a href="#home" className="group flex items-center gap-2.5" aria-label="Yohannes Clinic home">
+          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-gold transition-transform duration-500 group-hover:rotate-90">
             <Plus className="h-5 w-5" strokeWidth={3} />
           </span>
-          <span
-            className={`font-display text-lg font-extrabold tracking-tight transition-colors ${
-              scrolled ? 'text-navy-800' : 'text-white'
-            }`}
-          >
-            Yohannes<span className="text-teal-400"> Clinic</span>
+          <span className="font-display text-lg font-semibold tracking-tight text-foreground">
+            Yohannes<span className="text-primary"> Clinic</span>
           </span>
         </a>
 
@@ -63,14 +59,10 @@ export default function Navbar() {
             <a
               key={l.href}
               href={l.href}
-              className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
+              className={`relative rounded-full px-4 py-2 text-sm font-medium transition-colors duration-300 ${
                 active === l.href
-                  ? scrolled
-                    ? 'bg-navy-50 text-navy-800'
-                    : 'bg-white/10 text-white'
-                  : scrolled
-                    ? 'text-slate-600 hover:text-navy-800 hover:bg-slate-50'
-                    : 'text-white/80 hover:text-white hover:bg-white/10'
+                  ? 'bg-primary/10 text-primary'
+                  : 'text-muted-foreground hover:bg-foreground/5 hover:text-foreground'
               }`}
             >
               {l.label}
@@ -81,7 +73,7 @@ export default function Navbar() {
         {/* Emergency CTA */}
         <a
           href={CLINIC.phoneHref}
-          className="hidden items-center gap-2 rounded-full bg-emergency-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-emergency-600 hover:shadow-md animate-pulse-ring lg:inline-flex"
+          className="hidden items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground transition-all duration-300 hover:brightness-110 animate-pulse-ring lg:inline-flex"
         >
           <Phone className="h-4 w-4" />
           Emergency Call
@@ -90,39 +82,36 @@ export default function Navbar() {
         {/* Mobile toggle */}
         <button
           onClick={() => setOpen((v) => !v)}
-          className={`lg:hidden ${scrolled ? 'text-navy-800' : 'text-white'}`}
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-foreground/5 text-foreground transition-colors hover:border-primary/50 hover:text-primary lg:hidden"
           aria-label="Toggle navigation menu"
           aria-expanded={open}
         >
-          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </nav>
 
       {/* Mobile menu */}
       <div
-        className={`overflow-hidden bg-white transition-all duration-300 lg:hidden ${
-          open ? 'max-h-96 border-t border-slate-200' : 'max-h-0'
+        className={`mx-auto mt-2 max-w-7xl overflow-hidden rounded-3xl transition-all duration-500 lg:hidden ${
+          open ? 'glass max-h-[28rem] opacity-100 shadow-elevated' : 'max-h-0 opacity-0'
         }`}
       >
-        <div className="flex flex-col gap-1 px-5 py-4">
+        <div className="flex flex-col gap-1 p-3">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className={`rounded-lg px-4 py-3 text-base font-medium transition-colors ${
+              className={`rounded-2xl px-4 py-3 text-base font-medium transition-colors ${
                 active === l.href
-                  ? 'bg-navy-50 text-navy-800'
-                  : 'text-slate-600 hover:bg-slate-50'
+                  ? 'bg-primary/10 text-primary'
+                  : 'text-muted-foreground hover:bg-foreground/5 hover:text-foreground'
               }`}
             >
               {l.label}
             </a>
           ))}
-          <a
-            href={CLINIC.phoneHref}
-            className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-emergency-500 px-5 py-3 text-sm font-semibold text-white"
-          >
+          <a href={CLINIC.phoneHref} className="btn-primary mt-2 py-3.5">
             <Phone className="h-4 w-4" />
             Emergency: {CLINIC.phone}
           </a>
