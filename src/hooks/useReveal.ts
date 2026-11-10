@@ -23,7 +23,7 @@ export function useReveal<T extends HTMLElement = HTMLDivElement>() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const delay = (entry.target as HTMLElement).dataset.delay;
+            const delay = (entry.target as HTMLElement).dataset['delay'];
             if (delay) {
               (entry.target as HTMLElement).style.transitionDelay = `${delay}ms`;
             }
