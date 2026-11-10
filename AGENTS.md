@@ -28,3 +28,8 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+
+- The single-page clinic site lives in `src/routes/index.tsx`, composed from section components in `src/components/site/`; navigation uses in-page `#section` anchors because the original site is one scrolling page.
+- Brand color scales (navy, teal, slate, success, emergency), fonts and animations are defined in `src/styles.css` `@theme`; some Tailwind v4 scale values (shadow-sm, blur-sm, radii) are pinned to v3 values so the migrated design stays pixel-faithful.

@@ -1,0 +1,110 @@
+{
+  "source": "code-archive (Bolt-generated Vite + React site: Yohannes Clinic)",
+  "capabilities": [
+    {
+      "capability": "code",
+      "source": "src/App.tsx + 10 section components",
+      "outcome": "migrate",
+      "status": "verified",
+      "next_action": "none"
+    },
+    {
+      "capability": "design/theme",
+      "source": "tailwind.config.js (v3) + src/index.css",
+      "outcome": "migrate",
+      "status": "verified",
+      "next_action": "none"
+    },
+    {
+      "capability": "metadata",
+      "source": "index.html head",
+      "outcome": "migrate",
+      "status": "verified",
+      "next_action": "none"
+    },
+    {
+      "capability": "assets",
+      "source": "public/favicon.svg + remote Pexels images + Google Maps embed",
+      "outcome": "migrate",
+      "status": "verified",
+      "next_action": "none"
+    },
+    {
+      "capability": "schema",
+      "source": "none (supabase-js listed in package.json but never imported)",
+      "outcome": "not applicable",
+      "status": "verified",
+      "next_action": "none"
+    },
+    {
+      "capability": "records",
+      "source": "none",
+      "outcome": "not applicable",
+      "status": "verified",
+      "next_action": "none"
+    },
+    {
+      "capability": "auth identities",
+      "source": "none",
+      "outcome": "not applicable",
+      "status": "verified",
+      "next_action": "none"
+    },
+    {
+      "capability": "authorization",
+      "source": "none",
+      "outcome": "not applicable",
+      "status": "verified",
+      "next_action": "none"
+    },
+    {
+      "capability": "uploaded file bytes",
+      "source": "none",
+      "outcome": "not applicable",
+      "status": "verified",
+      "next_action": "none"
+    },
+    {
+      "capability": "appointment form",
+      "source": "AppointmentForm.tsx (client-side validation only, explicitly a demo; nothing transmitted)",
+      "outcome": "migrate as-is",
+      "status": "verified",
+      "next_action": "Optional: save requests to Lovable Cloud if the clinic wants to receive them online"
+    },
+    {
+      "capability": "external providers",
+      "source": "Google Maps embed/link, tel: links",
+      "outcome": "preserve",
+      "status": "verified",
+      "next_action": "none"
+    },
+    {
+      "capability": "public endpoints/callbacks/webhooks/schedules",
+      "source": "none",
+      "outcome": "not applicable",
+      "status": "verified",
+      "next_action": "none"
+    },
+    {
+      "capability": "secrets",
+      "source": "none (no env vars referenced)",
+      "outcome": "not applicable",
+      "status": "verified",
+      "next_action": "none"
+    },
+    {
+      "capability": "cutover",
+      "source": "unknown current hosting",
+      "outcome": "user action",
+      "status": "pending",
+      "next_action": "Publish and point domain when ready"
+    },
+    {
+      "capability": "verification",
+      "source": "-",
+      "outcome": "verify",
+      "status": "verified",
+      "next_action": "none"
+    }
+  ]
+}
