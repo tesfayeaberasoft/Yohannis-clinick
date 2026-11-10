@@ -32,4 +32,4 @@ use the editor.
 ## Project rules
 
 - The single-page clinic site lives in `src/routes/index.tsx`, composed from section components in `src/components/site/`; navigation uses in-page `#section` anchors because the original site is one scrolling page.
-- Brand color scales (navy, teal, slate, success, emergency), fonts and animations are defined in `src/styles.css` `@theme`; some Tailwind v4 scale values (shadow-sm, blur-sm, radii) are pinned to v3 values so the migrated design stays pixel-faithful.
+- The site is dark-first: all colors, gradients and shadows are semantic tokens in `src/styles.css` (`:root` + `@theme inline`), and shared look (buttons, cards, glass, eyebrow, form inputs) lives in `@layer components` classes there; components never use raw palette classes so the theme can change in one place.

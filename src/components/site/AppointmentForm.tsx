@@ -87,20 +87,21 @@ export default function AppointmentForm() {
   return (
     <section
       id="appointment"
-      className="bg-slate-50 py-24 lg:py-32"
+      className="relative overflow-hidden bg-background py-28 lg:py-36"
       ref={ref}
     >
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-5">
+      <div className="absolute -left-40 bottom-0 h-[30rem] w-[30rem] rounded-full bg-primary/5 blur-[120px]" />
+      <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
+        <div className="grid gap-14 lg:grid-cols-5 lg:gap-16">
           {/* Left: info */}
           <div className="lg:col-span-2">
-            <p className="reveal text-sm font-bold uppercase tracking-[0.15em] text-teal-500">
+            <p className="reveal eyebrow">
               Contact & Appointments
             </p>
-            <h2 className="reveal mt-4 font-display text-4xl font-extrabold tracking-tight text-navy-800 text-balance sm:text-5xl">
-              How Can We Help You?
+            <h2 className="reveal section-title mt-5">
+              How can we <span className="text-gradient-gold">help you?</span>
             </h2>
-            <p className="reveal mt-5 text-lg text-slate-500">
+            <p className="reveal section-lead mt-6">
               Contact Yohannes Clinic or request an appointment. Our team will
               assist you with your inquiry.
             </p>
@@ -109,25 +110,25 @@ export default function AppointmentForm() {
             <div className="reveal mt-8 space-y-4">
               <a
                 href={CLINIC.phoneHref}
-                className="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5 transition-all hover:border-navy-300 hover:shadow-md hover:shadow-navy-900/5"
+                className="card-surface card-interactive group flex items-center gap-4 p-5"
               >
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-navy-50 text-navy-700">
+                <span className="icon-chip group-hover:bg-primary group-hover:text-primary-foreground">
                   <Phone className="h-5 w-5" />
                 </span>
                 <div>
-                  <p className="text-sm font-semibold text-navy-800">Call us</p>
-                  <p className="text-sm text-slate-500">{CLINIC.phone}</p>
+                  <p className="text-sm font-semibold text-foreground">Call us</p>
+                  <p className="text-sm text-muted-foreground">{CLINIC.phone}</p>
                 </div>
               </a>
-              <div className="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5">
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-teal-50 text-teal-600">
+              <div className="card-surface flex items-center gap-4 p-5">
+                <span className="icon-chip">
                   <MessageSquare className="h-5 w-5" />
                 </span>
                 <div>
-                  <p className="text-sm font-semibold text-navy-800">
+                  <p className="text-sm font-semibold text-foreground">
                     Request a callback
                   </p>
-                  <p className="text-sm text-slate-500">
+                  <p className="text-sm text-muted-foreground">
                     Fill out the form and we will get back to you.
                   </p>
                 </div>
@@ -135,7 +136,7 @@ export default function AppointmentForm() {
             </div>
 
             {/* Privacy note */}
-            <p className="reveal mt-8 text-xs leading-relaxed text-slate-400">
+            <p className="reveal mt-8 text-xs leading-relaxed text-muted-foreground/70">
               This form is for appointment requests and general inquiries only.
               Please do not include sensitive medical information. For
               emergencies, call {CLINIC.phone} directly.
@@ -145,14 +146,14 @@ export default function AppointmentForm() {
           {/* Right: form */}
           <div className="reveal lg:col-span-3">
             {submitted ? (
-              <div className="flex h-full flex-col items-center justify-center rounded-3xl border border-slate-200 bg-white p-12 text-center shadow-sm">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-success-500/10 text-success-500">
+              <div className="glass flex h-full flex-col items-center justify-center rounded-3xl p-10 text-center shadow-elevated animate-scale-in sm:p-12">
+                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-success/10 text-success ring-8 ring-success/5">
                   <CheckCircle2 className="h-8 w-8" />
                 </div>
-                <h3 className="mt-6 font-display text-2xl font-extrabold text-navy-800">
+                <h3 className="mt-6 font-display text-3xl font-semibold text-foreground">
                   Request Received
                 </h3>
-                <p className="mt-3 max-w-md text-slate-500">
+                <p className="mt-4 max-w-md leading-relaxed text-muted-foreground">
                   Thank you for reaching out to Yohannes Clinic. We have noted
                   your request and our team will contact you shortly to confirm
                   your appointment. This is a demo form — no information has been
@@ -161,7 +162,7 @@ export default function AppointmentForm() {
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                   <a
                     href={CLINIC.phoneHref}
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-blue-500"
+                    className="btn-primary px-6 py-3.5"
                   >
                     <Phone className="h-4 w-4" />
                     Call {CLINIC.phone}
@@ -171,7 +172,7 @@ export default function AppointmentForm() {
                       setSubmitted(false);
                       setData(initialData);
                     }}
-                    className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 px-6 py-3 text-sm font-bold text-slate-600 transition-colors hover:bg-slate-50"
+                    className="btn-outline px-6 py-3.5"
                   >
                     Submit another request
                   </button>
@@ -181,13 +182,13 @@ export default function AppointmentForm() {
               <form
                 onSubmit={handleSubmit}
                 noValidate
-                className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8"
+                className="glass rounded-3xl p-6 shadow-elevated sm:p-10"
               >
                 <div className="grid gap-5 sm:grid-cols-2">
                   {/* Full Name */}
                   <div className="sm:col-span-2">
                     <label htmlFor="fullName" className="form-label">
-                      Full Name <span className="text-emergency-500">*</span>
+                      Full Name <span className="text-primary">*</span>
                     </label>
                     <input
                       id="fullName"
@@ -196,7 +197,7 @@ export default function AppointmentForm() {
                       onChange={(e) => handleChange('fullName', e.target.value)}
                       placeholder="Enter your full name"
                       className={`form-input mt-2 ${
-                        errors.fullName ? 'border-emergency-500 focus:ring-emergency-500/15' : ''
+                        errors.fullName ? 'border-destructive focus:border-destructive focus:ring-destructive/15' : ''
                       }`}
                       aria-invalid={!!errors.fullName}
                     />
@@ -211,7 +212,7 @@ export default function AppointmentForm() {
                   {/* Phone */}
                   <div>
                     <label htmlFor="phone" className="form-label">
-                      Phone Number <span className="text-emergency-500">*</span>
+                      Phone Number <span className="text-primary">*</span>
                     </label>
                     <input
                       id="phone"
@@ -220,7 +221,7 @@ export default function AppointmentForm() {
                       onChange={(e) => handleChange('phone', e.target.value)}
                       placeholder="+251 ..."
                       className={`form-input mt-2 ${
-                        errors.phone ? 'border-emergency-500 focus:ring-emergency-500/15' : ''
+                        errors.phone ? 'border-destructive focus:border-destructive focus:ring-destructive/15' : ''
                       }`}
                       aria-invalid={!!errors.phone}
                     />
@@ -235,14 +236,14 @@ export default function AppointmentForm() {
                   {/* Service */}
                   <div>
                     <label htmlFor="service" className="form-label">
-                      Service Needed <span className="text-emergency-500">*</span>
+                      Service Needed <span className="text-primary">*</span>
                     </label>
                     <select
                       id="service"
                       value={data.service}
                       onChange={(e) => handleChange('service', e.target.value)}
                       className={`form-input mt-2 appearance-none ${
-                        errors.service ? 'border-emergency-500 focus:ring-emergency-500/15' : ''
+                        errors.service ? 'border-destructive focus:border-destructive focus:ring-destructive/15' : ''
                       }`}
                       aria-invalid={!!errors.service}
                     >
@@ -264,7 +265,7 @@ export default function AppointmentForm() {
                   {/* Date */}
                   <div>
                     <label htmlFor="preferredDate" className="form-label">
-                      Preferred Date <span className="text-emergency-500">*</span>
+                      Preferred Date <span className="text-primary">*</span>
                     </label>
                     <input
                       id="preferredDate"
@@ -273,7 +274,7 @@ export default function AppointmentForm() {
                       value={data.preferredDate}
                       onChange={(e) => handleChange('preferredDate', e.target.value)}
                       className={`form-input mt-2 ${
-                        errors.preferredDate ? 'border-emergency-500 focus:ring-emergency-500/15' : ''
+                        errors.preferredDate ? 'border-destructive focus:border-destructive focus:ring-destructive/15' : ''
                       }`}
                       aria-invalid={!!errors.preferredDate}
                     />
@@ -288,14 +289,14 @@ export default function AppointmentForm() {
                   {/* Time */}
                   <div>
                     <label htmlFor="preferredTime" className="form-label">
-                      Preferred Time <span className="text-emergency-500">*</span>
+                      Preferred Time <span className="text-primary">*</span>
                     </label>
                     <select
                       id="preferredTime"
                       value={data.preferredTime}
                       onChange={(e) => handleChange('preferredTime', e.target.value)}
                       className={`form-input mt-2 appearance-none ${
-                        errors.preferredTime ? 'border-emergency-500 focus:ring-emergency-500/15' : ''
+                        errors.preferredTime ? 'border-destructive focus:border-destructive focus:ring-destructive/15' : ''
                       }`}
                       aria-invalid={!!errors.preferredTime}
                     >
@@ -316,7 +317,7 @@ export default function AppointmentForm() {
                   {/* Message */}
                   <div className="sm:col-span-2">
                     <label htmlFor="message" className="form-label">
-                      Message <span className="font-normal text-slate-400">(optional)</span>
+                      Message <span className="font-normal text-muted-foreground">(optional)</span>
                     </label>
                     <textarea
                       id="message"
@@ -331,12 +332,12 @@ export default function AppointmentForm() {
 
                 <button
                   type="submit"
-                  className="group mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-blue-600 px-7 py-4 text-sm font-bold text-white shadow-sm transition-all hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-600/15"
+                  className="btn-primary group mt-8 w-full"
                 >
                   <Calendar className="h-5 w-5" />
                   Submit Appointment Request
                 </button>
-                <p className="mt-4 text-center text-xs text-slate-400">
+                <p className="mt-4 text-center text-xs text-muted-foreground/70">
                   By submitting, you agree to be contacted by Yohannes Clinic
                   regarding your request.
                 </p>

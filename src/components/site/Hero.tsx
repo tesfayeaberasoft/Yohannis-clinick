@@ -1,91 +1,109 @@
-import { Plus, Phone, Clock, Stethoscope, Heart, Calendar } from 'lucide-react';
+import { Phone, Clock, Stethoscope, Heart, Calendar, ArrowRight, ShieldCheck } from 'lucide-react';
 import { CLINIC, IMAGES } from '@/data/clinic';
 
 const highlights = [
-  { icon: Clock, label: 'Open 24 Hours' },
-  { icon: Stethoscope, label: 'Professional Healthcare' },
-  { icon: Heart, label: 'Patient-Centered Care' },
+  { icon: Clock, value: '24/7', label: 'Always open' },
+  { icon: Stethoscope, value: '5+', label: 'Core services' },
+  { icon: Heart, value: '100%', label: 'Patient-centered' },
 ];
 
 export default function Hero() {
   return (
-    <section id="home" className="relative min-h-screen overflow-hidden bg-navy-900">
-      {/* Background image */}
-      <div className="absolute inset-0">
+    <section id="home" className="relative isolate min-h-screen overflow-hidden bg-background">
+      {/* Background image + overlays */}
+      <div className="absolute inset-0 -z-10">
         <img
           src={IMAGES.hero}
           alt="Professional healthcare provider in a modern clinical environment"
-          className="h-full w-full object-cover object-center"
+          className="h-full w-full scale-105 object-cover object-center grayscale-[35%] animate-fade-in"
           fetchPriority="high"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-navy-950/95 via-navy-900/80 to-navy-800/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-navy-950/60 via-transparent to-navy-950/30" />
+        <div className="absolute inset-0" style={{ backgroundImage: 'var(--gradient-hero)' }} />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-background/60" />
+        <div className="absolute -left-40 top-1/4 h-[32rem] w-[32rem] rounded-full bg-primary/10 blur-[120px]" />
+        <div className="bg-grid absolute inset-0 opacity-30 [mask-image:radial-gradient(ellipse_at_top_left,black_20%,transparent_70%)]" />
       </div>
 
       {/* Content */}
-      <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-5 pt-28 pb-16 lg:px-8">
-        <div className="max-w-3xl">
+      <div className="mx-auto grid min-h-screen max-w-7xl items-center gap-12 px-5 pt-32 pb-36 lg:grid-cols-12 lg:px-8">
+        <div className="lg:col-span-8">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold text-white backdrop-blur-sm animate-fade-in">
-            <span className="flex h-2 w-2 rounded-full bg-success-400" />
+          <div className="glass inline-flex items-center gap-2.5 rounded-full px-4 py-2 text-xs font-semibold text-foreground opacity-0 animate-fade-in">
             <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success-400 opacity-75" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-success" />
             </span>
             Open Now — 24/7 Healthcare Available
           </div>
 
           {/* Headline */}
-          <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.1] tracking-tight text-white text-balance animate-fade-up sm:text-5xl lg:text-6xl xl:text-7xl">
-            Your Health, Our Priority
-            <span className="mt-2 block bg-gradient-to-r from-teal-300 to-teal-400 bg-clip-text text-transparent">
+          <h1 className="mt-8 font-display text-5xl font-semibold leading-[1.02] tracking-tight text-foreground text-balance opacity-0 animate-fade-up sm:text-6xl lg:text-7xl xl:text-[5.5rem]">
+            Your Health,
+            <br />
+            Our Priority.
+            <span className="text-gradient-gold mt-3 block text-3xl font-medium leading-tight sm:text-4xl lg:text-5xl">
               24/7 Quality Healthcare in Hawassa
             </span>
           </h1>
 
           {/* Supporting text */}
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-200 animate-fade-up [animation-delay:100ms]">
-            Providing compassionate, professional, and comprehensive medical
-            services around the clock with experienced health professionals.
+          <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground opacity-0 animate-fade-up [animation-delay:120ms]">
+            Compassionate, professional, and comprehensive medical services
+            around the clock — delivered by experienced health professionals.
           </p>
 
           {/* CTAs */}
-          <div className="mt-8 flex flex-col gap-4 sm:flex-row animate-fade-up [animation-delay:200ms]">
-            <a
-              href="#appointment"
-              className="group inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-7 py-4 text-sm font-bold text-white shadow-lg shadow-blue-600/30 transition-all hover:bg-blue-500 hover:shadow-xl hover:shadow-blue-600/40"
-            >
+          <div className="mt-10 flex flex-col gap-4 opacity-0 animate-fade-up [animation-delay:220ms] sm:flex-row">
+            <a href="#appointment" className="btn-primary group">
               <Calendar className="h-5 w-5" />
               Book an Appointment
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </a>
-            <a
-              href={CLINIC.phoneHref}
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 bg-white/5 px-7 py-4 text-sm font-bold text-white backdrop-blur-sm transition-all hover:bg-white/15"
-            >
+            <a href={CLINIC.phoneHref} className="btn-outline">
               <Phone className="h-5 w-5" />
-              Call Us Now
+              Emergency Call
             </a>
           </div>
+        </div>
 
-          {/* Highlights */}
-          <div className="mt-12 flex flex-col gap-4 sm:flex-row sm:gap-8 animate-fade-up [animation-delay:300ms]">
-            {highlights.map((h) => (
-              <div key={h.label} className="flex items-center gap-3">
-                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-teal-300 backdrop-blur-sm">
-                  <h.icon className="h-5 w-5" />
+        {/* Floating glass card */}
+        <div className="hidden lg:col-span-4 lg:block">
+          <div className="glass ml-auto max-w-xs rounded-3xl p-6 shadow-elevated opacity-0 animate-fade-up [animation-delay:400ms]">
+            <div className="animate-float">
+              <div className="flex items-center gap-3">
+                <span className="icon-chip">
+                  <ShieldCheck className="h-6 w-6" />
                 </span>
-                <span className="text-sm font-medium text-white/90">
-                  {h.label}
-                </span>
+                <div>
+                  <p className="font-display text-base font-semibold text-foreground">Emergency line</p>
+                  <p className="text-xs text-muted-foreground">Answered day &amp; night</p>
+                </div>
               </div>
-            ))}
+              <a
+                href={CLINIC.phoneHref}
+                className="mt-5 block rounded-2xl border border-border bg-background/60 px-4 py-3 font-display text-lg font-semibold tracking-wide text-primary transition-colors hover:border-primary/50"
+              >
+                {CLINIC.phone}
+              </a>
+              <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
+                Walk in anytime in {CLINIC.city}, {CLINIC.region}.
+              </p>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-white/40 sm:flex">
-        <span className="text-xs uppercase tracking-widest">Scroll</span>
-        <div className="h-12 w-px bg-gradient-to-b from-white/40 to-transparent" />
+      {/* Stats strip */}
+      <div className="absolute inset-x-0 bottom-0 border-t border-border bg-background/40 backdrop-blur-xl">
+        <div className="mx-auto grid max-w-7xl grid-cols-3 divide-x divide-border px-5 lg:px-8">
+          {highlights.map((h) => (
+            <div key={h.label} className="flex flex-col items-start gap-1 px-3 py-5 first:pl-0 sm:flex-row sm:items-center sm:gap-4 sm:px-6">
+              <h.icon className="hidden h-5 w-5 text-primary sm:block" />
+              <span className="font-display text-2xl font-semibold text-foreground sm:text-3xl">{h.value}</span>
+              <span className="text-xs text-muted-foreground sm:text-sm">{h.label}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
