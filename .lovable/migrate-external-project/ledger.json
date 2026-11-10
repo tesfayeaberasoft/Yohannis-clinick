@@ -1,0 +1,20 @@
+{
+  "source": "code-archive (Bolt-generated Vite + React site: Yohannes Clinic)",
+  "capabilities": [
+    {"capability": "code", "source": "src/App.tsx + 10 section components", "outcome": "migrate", "status": "pending", "next_action": "Port components to TanStack Start index route"},
+    {"capability": "design/theme", "source": "tailwind.config.js (v3) + src/index.css", "outcome": "migrate", "status": "pending", "next_action": "Port colors, fonts, animations, form styles to Tailwind v4 styles.css"},
+    {"capability": "metadata", "source": "index.html head", "outcome": "migrate", "status": "pending", "next_action": "Move title/description/og/twitter tags to route head()"},
+    {"capability": "assets", "source": "public/favicon.svg + remote Pexels images + Google Maps embed", "outcome": "migrate", "status": "pending", "next_action": "Copy favicon, keep remote image URLs and map embed"},
+    {"capability": "schema", "source": "none (supabase-js listed in package.json but never imported)", "outcome": "not applicable", "status": "verified", "next_action": "none"},
+    {"capability": "records", "source": "none", "outcome": "not applicable", "status": "verified", "next_action": "none"},
+    {"capability": "auth identities", "source": "none", "outcome": "not applicable", "status": "verified", "next_action": "none"},
+    {"capability": "authorization", "source": "none", "outcome": "not applicable", "status": "verified", "next_action": "none"},
+    {"capability": "uploaded file bytes", "source": "none", "outcome": "not applicable", "status": "verified", "next_action": "none"},
+    {"capability": "appointment form", "source": "AppointmentForm.tsx (client-side validation only, explicitly a demo; nothing transmitted)", "outcome": "migrate as-is", "status": "pending", "next_action": "Port; optionally offer saving requests to Lovable Cloud later"},
+    {"capability": "external providers", "source": "Google Maps embed/link, tel: links", "outcome": "preserve", "status": "pending", "next_action": "Keep embed and links"},
+    {"capability": "public endpoints/callbacks/webhooks/schedules", "source": "none", "outcome": "not applicable", "status": "verified", "next_action": "none"},
+    {"capability": "secrets", "source": "none (no env vars referenced)", "outcome": "not applicable", "status": "verified", "next_action": "none"},
+    {"capability": "cutover", "source": "unknown current hosting", "outcome": "user action", "status": "pending", "next_action": "Publish and point domain when ready"},
+    {"capability": "verification", "source": "-", "outcome": "verify", "status": "pending", "next_action": "Build, typecheck, render check of all sections and form"}
+  ]
+}
