@@ -1,4 +1,4 @@
-import { Plus, Phone, MapPin, Clock, AlertTriangle } from 'lucide-react';
+import { Plus, Phone, MapPin, Clock, AlertTriangle, ArrowUp } from 'lucide-react';
 import { CLINIC } from '@/data/clinic';
 
 const quickLinks = [
@@ -19,17 +19,16 @@ const services = [
 
 export default function Footer() {
   return (
-    <footer className="bg-navy-950 text-slate-300">
+    <footer className="border-t border-border bg-background text-muted-foreground">
       {/* Emergency disclaimer bar */}
-      <div className="border-b border-white/10 bg-emergency-500/10">
-        <div className="mx-auto flex max-w-7xl items-center gap-3 px-5 py-3 lg:px-8">
-          <AlertTriangle className="h-5 w-5 flex-shrink-0 text-emergency-400" />
-          <p className="text-sm text-slate-300">
-            <span className="font-bold text-emergency-400">Medical Emergency?</span>{' '}
-            Call us immediately at{' '}
+      <div className="border-b border-border bg-primary/5">
+        <div className="mx-auto flex max-w-7xl items-center gap-3 px-5 py-4 lg:px-8">
+          <AlertTriangle className="h-5 w-5 flex-shrink-0 text-primary" />
+          <p className="text-sm">
+            <span className="font-bold text-primary">Medical Emergency?</span> Call us immediately at{' '}
             <a
               href={CLINIC.phoneHref}
-              className="font-bold text-white underline underline-offset-2 hover:text-emergency-300"
+              className="font-bold text-foreground underline decoration-primary/50 underline-offset-4 transition-colors hover:text-primary"
             >
               {CLINIC.phone}
             </a>
@@ -39,36 +38,28 @@ export default function Footer() {
       </div>
 
       {/* Main footer */}
-      <div className="mx-auto max-w-7xl px-5 py-16 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-4">
-          {/* Brand */}
-          <div className="lg:col-span-1">
+      <div className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+          <div>
             <div className="flex items-center gap-2.5">
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-teal-400 text-blue-950">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-primary-foreground">
                 <Plus className="h-5 w-5" strokeWidth={3} />
               </span>
-              <span className="font-display text-lg font-extrabold text-white">
-                Yohannes<span className="text-teal-400"> Clinic</span>
+              <span className="font-display text-lg font-semibold text-foreground">
+                Yohannes<span className="text-primary"> Clinic</span>
               </span>
             </div>
-            <p className="mt-5 max-w-xs text-sm leading-relaxed text-slate-400">
-              Committed to accessible, compassionate, and professional
-              healthcare in Hawassa.
+            <p className="mt-5 max-w-xs text-sm leading-relaxed">
+              Committed to accessible, compassionate, and professional healthcare in Hawassa.
             </p>
           </div>
 
-          {/* Quick links */}
           <div>
-            <h3 className="font-display text-sm font-bold uppercase tracking-wider text-white">
-              Quick Links
-            </h3>
-            <ul className="mt-5 space-y-3">
+            <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground">Quick Links</h3>
+            <ul className="mt-6 space-y-3">
               {quickLinks.map((l) => (
                 <li key={l.label}>
-                  <a
-                    href={l.href}
-                    className="text-sm text-slate-400 transition-colors hover:text-teal-400"
-                  >
+                  <a href={l.href} className="text-sm transition-colors hover:text-primary">
                     {l.label}
                   </a>
                 </li>
@@ -76,18 +67,12 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Services */}
           <div>
-            <h3 className="font-display text-sm font-bold uppercase tracking-wider text-white">
-              Services
-            </h3>
-            <ul className="mt-5 space-y-3">
+            <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground">Services</h3>
+            <ul className="mt-6 space-y-3">
               {services.map((s) => (
                 <li key={s}>
-                  <a
-                    href="#services"
-                    className="text-sm text-slate-400 transition-colors hover:text-teal-400"
-                  >
+                  <a href="#services" className="text-sm transition-colors hover:text-primary">
                     {s}
                   </a>
                 </li>
@@ -95,48 +80,38 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
-            <h3 className="font-display text-sm font-bold uppercase tracking-wider text-white">
-              Contact
-            </h3>
-            <ul className="mt-5 space-y-4">
+            <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground">Contact</h3>
+            <ul className="mt-6 space-y-4">
               <li className="flex items-start gap-3">
-                <Phone className="mt-0.5 h-4 w-4 flex-shrink-0 text-teal-400" />
-                <a
-                  href={CLINIC.phoneHref}
-                  className="text-sm text-slate-400 transition-colors hover:text-teal-400"
-                >
+                <Phone className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                <a href={CLINIC.phoneHref} className="text-sm transition-colors hover:text-primary">
                   {CLINIC.phone}
                 </a>
               </li>
               <li className="flex items-start gap-3">
-                <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-teal-400" />
-                <span className="text-sm text-slate-400">
+                <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                <span className="text-sm">
                   {CLINIC.city}, {CLINIC.region}, {CLINIC.country}
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <Clock className="mt-0.5 h-4 w-4 flex-shrink-0 text-teal-400" />
-                <span className="text-sm text-slate-400">
-                  Open 24 Hours, 7 Days a Week
-                </span>
+                <Clock className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                <span className="text-sm">Open 24 Hours, 7 Days a Week</span>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-12 border-t border-white/10 pt-8">
-          <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-            <p className="text-sm text-slate-500">
-              &copy; {new Date().getFullYear()} Yohannes Clinic. All rights
-              reserved.
-            </p>
-            <p className="text-xs text-slate-600">
-              Serving the Hawassa community with dedicated healthcare.
-            </p>
-          </div>
+        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 sm:flex-row">
+          <p className="text-sm">&copy; {new Date().getFullYear()} Yohannes Clinic. All rights reserved.</p>
+          <a
+            href="#home"
+            className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-xs font-semibold text-foreground transition-all hover:border-primary/50 hover:text-primary"
+          >
+            Back to top
+            <ArrowUp className="h-3.5 w-3.5" />
+          </a>
         </div>
       </div>
     </footer>

@@ -51,7 +51,7 @@ export default function WhyChooseUs() {
               key={r.title}
               data-delay={(i % 3) * 80}
               className={`reveal card-surface card-interactive group p-7 ${
-                i === reasons.length - 1 ? 'sm:col-span-2 lg:col-span-2' : ''
+                i === reasons.length - 1 ? 'sm:col-span-2 lg:col-span-3' : ''
               }`}
             >
               <div className="flex items-start justify-between">
