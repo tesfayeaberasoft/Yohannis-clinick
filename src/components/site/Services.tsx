@@ -1,11 +1,4 @@
-import {
-  Siren,
-  Stethoscope,
-  FlaskConical,
-  Pill,
-  Baby,
-  ArrowUpRight,
-} from 'lucide-react';
+import { Siren, Stethoscope, FlaskConical, Pill, Baby, ArrowUpRight, Calendar } from 'lucide-react';
 import { useReveal } from '@/hooks/useReveal';
 import { IMAGES } from '@/data/clinic';
 
@@ -17,9 +10,7 @@ const services = [
     description:
       'Immediate response and critical care support for patients requiring urgent medical attention.',
     image: IMAGES.emergency,
-    accent: 'bg-emergency-500',
-    accentSoft: 'bg-emergency-50 text-emergency-600',
-    featured: true,
+    badge: 'Around the clock',
   },
   {
     num: '02',
@@ -28,28 +19,20 @@ const services = [
     description:
       'Outpatient department checkups and medical consultations with experienced physicians.',
     image: IMAGES.consultation,
-    accent: 'bg-blue-600',
-    accentSoft: 'bg-blue-50 text-blue-700',
   },
   {
     num: '03',
     icon: FlaskConical,
     title: 'Laboratory Services',
-    description:
-      'Diagnostic laboratory services, blood tests, and medical screenings.',
+    description: 'Diagnostic laboratory services, blood tests, and medical screenings.',
     image: IMAGES.laboratory,
-    accent: 'bg-teal-500',
-    accentSoft: 'bg-teal-50 text-teal-600',
   },
   {
     num: '04',
     icon: Pill,
     title: 'Pharmacy Services',
-    description:
-      'Access to essential medications and prescription fulfillment.',
+    description: 'Access to essential medications and prescription fulfillment.',
     image: IMAGES.pharmacy,
-    accent: 'bg-blue-500',
-    accentSoft: 'bg-blue-50 text-blue-700',
   },
   {
     num: '05',
@@ -58,8 +41,6 @@ const services = [
     description:
       'Maternal healthcare, prenatal care, routine checkups, and vaccination services.',
     image: IMAGES.maternal,
-    accent: 'bg-teal-600',
-    accentSoft: 'bg-teal-50 text-teal-600',
   },
 ];
 
@@ -67,19 +48,17 @@ export default function Services() {
   const ref = useReveal<HTMLDivElement>();
 
   return (
-    <section id="services" className="bg-white py-24 lg:py-32" ref={ref}>
+    <section id="services" className="bg-background py-28 lg:py-36" ref={ref}>
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         {/* Header */}
-        <div className="max-w-2xl">
-          <p className="reveal text-sm font-bold uppercase tracking-[0.15em] text-teal-500">
-            Our Services
-          </p>
-          <h2 className="reveal mt-4 font-display text-4xl font-extrabold tracking-tight text-navy-800 text-balance sm:text-5xl">
-            Comprehensive Healthcare Services
-          </h2>
-          <p className="reveal mt-5 text-lg text-slate-500">
+        <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-2xl">
+            <p className="reveal eyebrow">Our Services</p>
+            <h2 className="reveal section-title mt-5">Comprehensive healthcare services</h2>
+          </div>
+          <p className="reveal section-lead max-w-md">
             Quality medical services designed to support your health and
-            well-being.
+            well-being — all under one roof.
           </p>
         </div>
 
@@ -88,63 +67,66 @@ export default function Services() {
           {services.map((s, i) => (
             <article
               key={s.num}
-              data-delay={(i % 3) * 80}
-              className={`reveal group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-navy-900/8 ${
-                s.featured ? 'lg:col-span-1' : ''
-              }`}
+              data-delay={(i % 3) * 90}
+              className="reveal card-surface card-interactive group relative flex flex-col overflow-hidden"
             >
               {/* Image */}
-              <div className="relative aspect-[16/9] overflow-hidden">
+              <div className="relative aspect-[16/10] overflow-hidden">
                 <img
                   src={s.image}
                   alt={s.title}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="h-full w-full object-cover grayscale-[40%] transition-all duration-700 ease-out group-hover:scale-110 group-hover:grayscale-0"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-900/50 to-transparent" />
-                <span className="absolute top-4 left-4 rounded-lg bg-white/90 px-2.5 py-1 font-display text-xs font-bold text-navy-800 backdrop-blur-sm">
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
+                <span className="glass absolute top-4 left-4 rounded-full px-3 py-1 font-display text-xs font-semibold text-foreground">
                   {s.num}
                 </span>
-                <span
-                  className={`absolute bottom-4 left-4 flex h-10 w-10 items-center justify-center rounded-xl ${s.accent} text-white shadow-lg`}
-                >
-                  <s.icon className="h-5 w-5" />
-                </span>
+                {s.badge && (
+                  <span className="absolute top-4 right-4 rounded-full bg-primary px-3 py-1 text-xs font-bold text-primary-foreground">
+                    {s.badge}
+                  </span>
+                )}
               </div>
 
               {/* Content */}
-              <div className="flex flex-1 flex-col p-6">
-                <h3 className="font-display text-lg font-bold text-navy-800">
-                  {s.title}
-                </h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">
-                  {s.description}
-                </p>
+              <div className="relative -mt-8 flex flex-1 flex-col p-7 pt-0">
+                <span className="icon-chip bg-card group-hover:bg-primary group-hover:text-primary-foreground">
+                  <s.icon className="h-5 w-5" />
+                </span>
+                <h3 className="mt-5 font-display text-xl font-semibold">{s.title}</h3>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{s.description}</p>
                 <a
                   href="#appointment"
-                  className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-navy-600 transition-colors hover:text-teal-600"
+                  className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-foreground transition-colors hover:text-primary"
                 >
                   Request this service
-                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <ArrowUpRight className="h-4 w-4 text-primary transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </a>
               </div>
             </article>
           ))}
 
           {/* CTA card */}
-          <div className="reveal flex flex-col items-center justify-center rounded-2xl bg-blue-600 p-8 text-center">
-            <h3 className="font-display text-xl font-bold text-white">
-              Not sure which service you need?
-            </h3>
-            <p className="mt-3 text-sm text-slate-300">
-              Our team can help guide you to the right care.
-            </p>
+          <div
+            className="reveal relative flex flex-col justify-between overflow-hidden rounded-2xl p-8 text-primary-foreground shadow-gold"
+            style={{ backgroundImage: 'var(--gradient-gold)' }}
+          >
+            <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full border-[28px] border-primary-foreground/10" />
+            <div className="relative">
+              <h3 className="font-display text-2xl font-semibold leading-tight text-primary-foreground">
+                Not sure which service you need?
+              </h3>
+              <p className="mt-3 text-sm font-medium text-primary-foreground/75">
+                Our team can help guide you to the right care.
+              </p>
+            </div>
             <a
               href="#appointment"
-              className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-blue-600 transition-all hover:bg-slate-100"
+              className="relative mt-10 inline-flex items-center justify-center gap-2 self-start rounded-full bg-primary-foreground px-6 py-3.5 text-sm font-bold text-primary transition-all duration-300 hover:-translate-y-0.5 hover:shadow-elevated"
             >
+              <Calendar className="h-4 w-4" />
               Book an Appointment
-              <ArrowUpRight className="h-4 w-4" />
             </a>
           </div>
         </div>
